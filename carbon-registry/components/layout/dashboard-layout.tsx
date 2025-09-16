@@ -4,8 +4,7 @@ import type React from "react"
 
 import { Button } from "@/components/ui/button"
 import { useAuth } from "@/contexts/auth-context"
-import { useTheme } from "@/contexts/theme-context"
-import { Leaf, LogOut, Bell, Home, Upload, CheckSquare, Award, Settings, Moon, Sun, Brain } from "lucide-react"
+import { Leaf, LogOut, Bell, Home, Upload, CheckSquare, Award, Settings, Brain } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 import { useState } from "react"
 import { Card, CardContent } from "@/components/ui/card"
@@ -16,7 +15,6 @@ interface DashboardLayoutProps {
 
 export function DashboardLayout({ children }: DashboardLayoutProps) {
   const { user, logout } = useAuth()
-  const { theme, toggleTheme } = useTheme()
   const [notifications] = useState([
     { id: 1, message: "New submission from Green Earth NGO", type: "info", time: "2 min ago" },
     { id: 2, message: "Project verification completed", type: "success", time: "1 hour ago" },
@@ -78,11 +76,6 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
             >
               <Brain className="h-4 w-4" />
               <span className="hidden sm:inline">RAG</span>
-            </Button>
-
-            {/* Dark mode toggle */}
-            <Button variant="ghost" size="sm" onClick={toggleTheme} className="flex items-center space-x-2">
-              {theme === "light" ? <Moon className="h-4 w-4" /> : <Sun className="h-4 w-4" />}
             </Button>
 
             {/* Notifications */}

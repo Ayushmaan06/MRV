@@ -104,9 +104,11 @@ export function NCCRDashboard() {
     e.preventDefault()
     setIsRegistering(true)
     try {
-      await registerLocalAuthority(laForm)
-      setLaForm({ district: "", uniqueName: "", password: "", state: "", city: "" })
-      alert("Local Authority registered successfully!")
+      if (registerLocalAuthority) {
+        await registerLocalAuthority(laForm)
+        setLaForm({ district: "", uniqueName: "", password: "", state: "", city: "" })
+        alert("Local Authority registered successfully!")
+      }
     } catch (error) {
       alert("Registration failed. Please try again.")
     } finally {
@@ -116,13 +118,24 @@ export function NCCRDashboard() {
 
   return (
     <DashboardLayout>
-      <div className="space-y-6">
-        <div>
-          <h1 className="text-3xl font-bold text-foreground">NCCR Admin Dashboard</h1>
-          <p className="text-muted-foreground">National Carbon Credit Registry - Administrative Overview</p>
+      <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-blue-50 relative overflow-hidden">
+        {/* Animated Background Orbs */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-r from-blue-100/30 to-purple-100/30 rounded-full blur-3xl animate-float" />
+          <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-gradient-to-r from-green-100/30 to-blue-100/30 rounded-full blur-3xl animate-float" style={{ animationDelay: '-3s' }} />
         </div>
 
-        <Card>
+        <div className="relative z-10 p-6 space-y-6">
+        <div className="text-center space-y-3">
+          <h1 className="text-4xl font-bold bg-gradient-to-r from-green-600 via-blue-600 to-purple-600 bg-clip-text text-transparent">
+            NCCR Admin Dashboard
+          </h1>
+          <p className="text-lg text-gray-600">
+            National Carbon Credit Registry - Administrative Overview
+          </p>
+        </div>
+
+        <Card className="bg-white border-gray-200 shadow-lg">
           <CardHeader>
             <CardTitle className="flex items-center space-x-2">
               <UserPlus className="h-5 w-5" />
@@ -195,7 +208,7 @@ export function NCCRDashboard() {
                   />
                 </div>
               </div>
-              <Button type="submit" disabled={isRegistering} className="w-full md:w-auto">
+              <Button type="submit" disabled={isRegistering} className="w-full md:w-auto bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
                 {isRegistering ? "Registering..." : "Register Local Authority"}
               </Button>
             </form>
@@ -204,54 +217,54 @@ export function NCCRDashboard() {
 
         {/* Stats Cards */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-          <Card>
+          <Card className="bg-white border-gray-200 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">Total Credits Issued</CardTitle>
-              <Award className="h-4 w-4 text-accent" />
+              <Award className="h-4 w-4 text-blue-600" />
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">{totalCreditsIssued}</div>
-              <p className="text-xs text-muted-foreground">Carbon credits in circulation</p>
+              <p className="text-xs text-gray-500">Carbon credits in circulation</p>
             </CardContent>
           </Card>
 
-          <Card>
+          <Card className="bg-white border-gray-200 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">Pending Finalizations</CardTitle>
               <CheckCircle className="h-4 w-4 text-yellow-600" />
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">{pendingVerifications}</div>
-              <p className="text-xs text-muted-foreground">Awaiting credit issuance</p>
+              <p className="text-xs text-gray-500">Awaiting credit issuance</p>
             </CardContent>
           </Card>
 
-          <Card>
+          <Card className="bg-white border-gray-200 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">Active NGOs</CardTitle>
-              <Users className="h-4 w-4 text-accent" />
+              <Users className="h-4 w-4 text-purple-600" />
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">{totalNGOs}</div>
-              <p className="text-xs text-muted-foreground">Registered organizations</p>
+              <p className="text-xs text-gray-500">Registered organizations</p>
             </CardContent>
           </Card>
 
-          <Card>
+          <Card className="bg-white border-gray-200 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">Growth Rate</CardTitle>
               <TrendingUp className="h-4 w-4 text-green-600" />
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">+47%</div>
-              <p className="text-xs text-muted-foreground">Credits issued this month</p>
+              <p className="text-xs text-gray-500">Credits issued this month</p>
             </CardContent>
           </Card>
         </div>
 
         {/* Charts */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <Card>
+          <Card className="bg-white border-gray-200 shadow-lg">
             <CardHeader>
               <CardTitle>Credits Issued Over Time</CardTitle>
               <CardDescription>Monthly carbon credit issuance trend</CardDescription>
@@ -263,13 +276,13 @@ export function NCCRDashboard() {
                   <XAxis dataKey="month" />
                   <YAxis />
                   <Tooltip />
-                  <Line type="monotone" dataKey="credits" stroke="hsl(var(--accent))" strokeWidth={2} />
+                  <Line type="monotone" dataKey="credits" stroke="#2563eb" strokeWidth={2} />
                 </LineChart>
               </ResponsiveContainer>
             </CardContent>
           </Card>
 
-          <Card>
+          <Card className="bg-white border-gray-200 shadow-lg">
             <CardHeader>
               <CardTitle>Credits by NGO</CardTitle>
               <CardDescription>Distribution of issued credits across organizations</CardDescription>
@@ -281,7 +294,7 @@ export function NCCRDashboard() {
                   <XAxis dataKey="ngo" />
                   <YAxis />
                   <Tooltip />
-                  <Bar dataKey="credits" fill="hsl(var(--accent))" />
+                  <Bar dataKey="credits" fill="#2563eb" />
                 </BarChart>
               </ResponsiveContainer>
             </CardContent>
@@ -289,7 +302,7 @@ export function NCCRDashboard() {
         </div>
 
         {/* Verified Submissions */}
-        <Card>
+        <Card className="bg-white border-gray-200 shadow-lg">
           <CardHeader>
             <CardTitle>Verified Submissions</CardTitle>
             <CardDescription>Projects verified by local authorities awaiting final credit issuance</CardDescription>
@@ -297,7 +310,7 @@ export function NCCRDashboard() {
           <CardContent>
             <div className="space-y-6">
               {verifiedSubmissions.map((submission) => (
-                <div key={submission.id} className="border rounded-lg p-6 space-y-4">
+                <div key={submission.id} className="bg-gray-50 border border-gray-200 rounded-xl p-6 space-y-4 hover:bg-gray-100 transition-all duration-300 shadow-sm">
                   <div className="flex items-start justify-between">
                     <div className="space-y-2">
                       <div className="flex items-center space-x-2">
@@ -312,34 +325,34 @@ export function NCCRDashboard() {
                           {submission.status === "credits_issued" ? "Credits Issued" : "Ready for Issuance"}
                         </Badge>
                       </div>
-                      <p className="text-sm text-muted-foreground">
+                      <p className="text-sm text-gray-500">
                         {submission.ngoName} • Verified by {submission.localAuthority}
                       </p>
                     </div>
                     <div className="text-right">
-                      <div className="text-2xl font-bold text-accent">{submission.estimatedCredits}</div>
-                      <div className="text-xs text-muted-foreground">Credits</div>
+                      <div className="text-2xl font-bold text-blue-600">{submission.estimatedCredits}</div>
+                      <div className="text-xs text-gray-500">Credits</div>
                     </div>
                   </div>
 
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
                     <div className="flex items-center space-x-2">
-                      <MapPin className="h-4 w-4 text-muted-foreground" />
+                      <MapPin className="h-4 w-4 text-gray-500" />
                       <span>{submission.location}</span>
                     </div>
                     <div className="flex items-center space-x-2">
-                      <Calendar className="h-4 w-4 text-muted-foreground" />
+                      <Calendar className="h-4 w-4 text-gray-500" />
                       <span>Verified: {submission.verificationDate}</span>
                     </div>
                     <div className="flex items-center space-x-2">
-                      <Hash className="h-4 w-4 text-muted-foreground" />
+                      <Hash className="h-4 w-4 text-gray-500" />
                       <span className="font-mono text-xs truncate">{submission.ipfsHash}</span>
                     </div>
                   </div>
 
                   {submission.status === "verified" && (
                     <div className="flex justify-end pt-4 border-t">
-                      <Button onClick={() => handleIssueCredits(submission.id)} className="flex items-center space-x-2">
+                      <Button onClick={() => handleIssueCredits(submission.id)} className="flex items-center space-x-2 bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
                         <Award className="h-4 w-4" />
                         <span>Issue Carbon Credits</span>
                       </Button>
@@ -350,6 +363,7 @@ export function NCCRDashboard() {
             </div>
           </CardContent>
         </Card>
+        </div>
       </div>
     </DashboardLayout>
   )

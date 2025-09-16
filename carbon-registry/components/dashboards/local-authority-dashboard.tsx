@@ -127,9 +127,11 @@ export function LocalAuthorityDashboard() {
     e.preventDefault()
     setIsRegistering(true)
     try {
-      await registerNGO(ngoForm)
-      setNgoForm({ organizationName: "", uniqueId: "", password: "", district: user?.region || "", state: "" })
-      alert("NGO/Community registered successfully!")
+      if (registerNGO) {
+        await registerNGO(ngoForm)
+        setNgoForm({ organizationName: "", uniqueId: "", password: "", district: user?.region || "", state: "" })
+        alert("NGO/Community registered successfully!")
+      }
     } catch (error) {
       alert("Registration failed. Please try again.")
     } finally {
@@ -139,15 +141,24 @@ export function LocalAuthorityDashboard() {
 
   return (
     <DashboardLayout>
-      <div className="space-y-6">
-        <div>
-          <h1 className="text-3xl font-bold text-foreground">Local Authority Dashboard</h1>
-          <p className="text-muted-foreground">
+      <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-blue-50 relative overflow-hidden">
+        {/* Animated Background Orbs */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-r from-blue-100/30 to-purple-100/30 rounded-full blur-3xl animate-float" />
+          <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-gradient-to-r from-green-100/30 to-blue-100/30 rounded-full blur-3xl animate-float" style={{ animationDelay: '-3s' }} />
+        </div>
+
+        <div className="relative z-10 p-6 space-y-6">
+        <div className="text-center space-y-3">
+          <h1 className="text-4xl font-bold bg-gradient-to-r from-green-600 via-blue-600 to-purple-600 bg-clip-text text-transparent">
+            Local Authority Dashboard
+          </h1>
+          <p className="text-lg text-gray-600">
             Welcome back, {user?.name} - {user?.region}
           </p>
         </div>
 
-        <Card>
+        <Card className="bg-white border-gray-200 shadow-lg">
           <CardHeader>
             <CardTitle className="flex items-center space-x-2">
               <UserPlus className="h-5 w-5" />
@@ -218,7 +229,7 @@ export function LocalAuthorityDashboard() {
                   </Select>
                 </div>
               </div>
-              <Button type="submit" disabled={isRegistering} className="w-full md:w-auto">
+              <Button type="submit" disabled={isRegistering} className="w-full md:w-auto bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
                 {isRegistering ? "Registering..." : "Register NGO/Community"}
               </Button>
             </form>
@@ -227,42 +238,42 @@ export function LocalAuthorityDashboard() {
 
         {/* Stats Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <Card>
+          <Card className="bg-white border-gray-200 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">Pending Reviews</CardTitle>
               <Clock className="h-4 w-4 text-yellow-600" />
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">{pendingCount}</div>
-              <p className="text-xs text-muted-foreground">Awaiting verification</p>
+              <p className="text-xs text-gray-500">Awaiting verification</p>
             </CardContent>
           </Card>
 
-          <Card>
+          <Card className="bg-white border-gray-200 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">Verified Projects</CardTitle>
               <CheckCircle className="h-4 w-4 text-green-600" />
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">{verifiedCount}</div>
-              <p className="text-xs text-muted-foreground">Successfully verified</p>
+              <p className="text-xs text-gray-500">Successfully verified</p>
             </CardContent>
           </Card>
 
-          <Card>
+          <Card className="bg-white border-gray-200 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">Rejected Submissions</CardTitle>
               <XCircle className="h-4 w-4 text-red-600" />
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">{rejectedCount}</div>
-              <p className="text-xs text-muted-foreground">Did not meet criteria</p>
+              <p className="text-xs text-gray-500">Did not meet criteria</p>
             </CardContent>
           </Card>
         </div>
 
         {/* NGO Submissions */}
-        <Card>
+        <Card className="bg-white border-gray-200 shadow-lg">
           <CardHeader>
             <CardTitle>NGO Submissions</CardTitle>
             <CardDescription>
@@ -272,14 +283,14 @@ export function LocalAuthorityDashboard() {
           <CardContent>
             <div className="space-y-6">
               {submissions.map((submission) => (
-                <div key={submission.id} className="border rounded-lg p-6 space-y-4">
+                <div key={submission.id} className="bg-gray-50 border border-gray-200 rounded-xl p-6 space-y-4 hover:bg-gray-100 transition-all duration-300 shadow-sm">
                   <div className="flex items-start justify-between">
                     <div className="space-y-2">
                       <div className="flex items-center space-x-2">
                         <h3 className="text-lg font-semibold">{submission.projectTitle}</h3>
                         <Badge className={getStatusColor(submission.status)}>{submission.status}</Badge>
                       </div>
-                      <p className="text-sm text-muted-foreground">Submitted by: {submission.ngoName}</p>
+                      <p className="text-sm text-gray-500">Submitted by: {submission.ngoName}</p>
                       <p className="text-sm">{submission.description}</p>
                     </div>
                   </div>
@@ -322,7 +333,7 @@ export function LocalAuthorityDashboard() {
                           <MapPin className="h-4 w-4" />
                           <span>Location</span>
                         </h4>
-                        <div className="text-sm text-muted-foreground">
+                        <div className="text-sm text-gray-500">
                           <p>{submission.location.address}</p>
                           <p className="font-mono text-xs">GPS: {submission.location.coordinates}</p>
                         </div>
@@ -333,7 +344,7 @@ export function LocalAuthorityDashboard() {
                           <Clock className="h-4 w-4" />
                           <span>Timestamp</span>
                         </h4>
-                        <p className="text-sm text-muted-foreground">
+                        <p className="text-sm text-gray-500">
                           {new Date(submission.timestamp).toLocaleString()}
                         </p>
                       </div>
@@ -343,7 +354,7 @@ export function LocalAuthorityDashboard() {
                           <Hash className="h-4 w-4" />
                           <span>IPFS Hash</span>
                         </h4>
-                        <p className="text-xs font-mono text-muted-foreground break-all">{submission.ipfsHash}</p>
+                        <p className="text-xs font-mono text-gray-500 break-all">{submission.ipfsHash}</p>
                       </div>
                     </div>
                   </div>
@@ -353,7 +364,7 @@ export function LocalAuthorityDashboard() {
                     <div className="flex space-x-2 pt-4 border-t">
                       <Button
                         onClick={() => handleVerify(submission.id)}
-                        className="flex items-center space-x-2 bg-green-600 hover:bg-green-700"
+                        className="flex items-center space-x-2 bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
                       >
                         <CheckCircle className="h-4 w-4" />
                         <span>Verify</span>
@@ -361,7 +372,7 @@ export function LocalAuthorityDashboard() {
                       <Button
                         variant="destructive"
                         onClick={() => handleReject(submission.id)}
-                        className="flex items-center space-x-2"
+                        className="flex items-center space-x-2 bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
                       >
                         <XCircle className="h-4 w-4" />
                         <span>Reject</span>
@@ -373,6 +384,7 @@ export function LocalAuthorityDashboard() {
             </div>
           </CardContent>
         </Card>
+        </div>
       </div>
     </DashboardLayout>
   )
