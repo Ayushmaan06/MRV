@@ -1,0 +1,14 @@
+streamlit
+langchain
+langchain-community
+langchain-huggingface
+langchain-cerebras
+langchain-mistralai
+langchain-google-genai
+faiss-cpu
+
+torch
+python-dotenv
+asyncio
+pymupdf
+sentence-transformers
