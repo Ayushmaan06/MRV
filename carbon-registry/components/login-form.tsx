@@ -9,6 +9,7 @@ import { Label } from "@/components/ui/label"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Alert, AlertDescription } from "@/components/ui/alert"
 import { useAuth } from "@/contexts/auth-context"
+import { ThemeToggle } from "@/components/theme-toggle"
 import { Leaf, Shield, Users, CheckCircle, Globe, TrendingUp, Lock } from "lucide-react"
 import { cn } from "@/lib/utils"
 
@@ -54,7 +55,11 @@ export function LoginForm() {
   ]
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-blue-50/60 via-purple-50/40 via-green-50/30 to-blue-50/50 overflow-hidden">
+    <div className="min-h-screen bg-gradient-to-b from-blue-50/60 via-purple-50/40 via-green-50/30 to-blue-50/50 dark:from-slate-800/80 dark:via-blue-900/70 dark:via-slate-700/80 dark:to-slate-800/85 overflow-hidden relative">
+      {/* Theme Toggle */}
+      <div className="absolute top-6 right-6 z-50">
+        <ThemeToggle />
+      </div>
       {/* Background Animation */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-br from-green-400/30 to-blue-400/30 rounded-full blur-3xl animate-float" />
@@ -76,10 +81,10 @@ export function LoginForm() {
                   Carbon Registry
                 </span>
               </div>
-              <h1 className="text-4xl lg:text-5xl font-bold mb-4 bg-gradient-to-r from-gray-900 via-green-600 to-blue-600 bg-clip-text text-transparent leading-tight">
+              <h1 className="text-4xl lg:text-5xl font-bold mb-4 bg-gradient-to-r from-gray-900 via-green-600 to-blue-600 dark:from-white dark:via-green-400 dark:to-blue-400 bg-clip-text text-transparent leading-tight">
                 Welcome to the Future of Carbon Management
               </h1>
-              <p className="text-xl text-gray-600 leading-relaxed">
+              <p className="text-xl text-gray-600 dark:text-gray-300 leading-relaxed">
                 Access your personalized dashboard to track, verify, and manage carbon credits with cutting-edge blockchain technology.
               </p>
             </div>
@@ -89,9 +94,9 @@ export function LoginForm() {
         {/* Right Side - Login Form */}
         <div className="flex-1 flex items-center justify-center p-8 lg:p-16">
           <div className="w-full max-w-md space-y-6">
-            <Card className="border-0 shadow-2xl bg-white/80 backdrop-blur-md">
+            <Card className="border-0 shadow-2xl bg-white/80 dark:bg-slate-800/95 backdrop-blur-md">
               <CardHeader className="text-center">
-                <CardTitle className="text-2xl font-bold bg-gradient-to-r from-gray-900 to-gray-600 bg-clip-text text-transparent">
+                <CardTitle className="text-2xl font-bold bg-gradient-to-r from-gray-900 to-gray-600 dark:from-white dark:to-gray-300 bg-clip-text text-transparent">
                   Sign In
                 </CardTitle>
                 
@@ -99,32 +104,32 @@ export function LoginForm() {
               <CardContent>
                 <form onSubmit={handleSubmit} className="space-y-4">
                   <div className="space-y-2">
-                    <Label htmlFor="email" className="text-gray-700 font-medium">Email</Label>
+                    <Label htmlFor="email" className="text-gray-700 dark:text-gray-200 font-medium">Email</Label>
                     <Input
                       id="email"
                       type="email"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       required
-                      className="bg-white/50 border-gray-200 focus:border-green-500 focus:ring-green-500/20 transition-colors"
+                      className="bg-white/50 dark:bg-slate-700/50 border-gray-200 dark:border-slate-600 focus:border-green-500 focus:ring-green-500/20 transition-colors dark:text-white"
                       placeholder="Enter your email"
                     />
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="password" className="text-gray-700 font-medium">Password</Label>
+                    <Label htmlFor="password" className="text-gray-700 dark:text-gray-200 font-medium">Password</Label>
                     <Input
                       id="password"
                       type="password"
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
                       required
-                      className="bg-white/50 border-gray-200 focus:border-green-500 focus:ring-green-500/20 transition-colors"
+                      className="bg-white/50 dark:bg-slate-700/50 border-gray-200 dark:border-slate-600 focus:border-green-500 focus:ring-green-500/20 transition-colors dark:text-white"
                       placeholder="Enter your password"
                     />
                   </div>
                   {error && (
-                    <Alert variant="destructive" className="bg-red-50 border-red-200">
-                      <AlertDescription className="text-red-700">{error}</AlertDescription>
+                    <Alert variant="destructive" className="bg-red-50 dark:bg-red-900/20 border-red-200 dark:border-red-800">
+                      <AlertDescription className="text-red-700 dark:text-red-300">{error}</AlertDescription>
                     </Alert>
                   )}
                   <Button 
@@ -138,9 +143,9 @@ export function LoginForm() {
               </CardContent>
             </Card>
 
-            <Card className="border-0 shadow-xl bg-white/70 backdrop-blur-md">
+            <Card className="border-0 shadow-xl bg-white/70 dark:bg-slate-800/90 backdrop-blur-md">
               <CardHeader>
-                <CardTitle className="text-lg font-semibold text-gray-800 flex items-center space-x-2">
+                <CardTitle className="text-lg font-semibold text-gray-800 dark:text-white flex items-center space-x-2">
                   <CheckCircle className="h-5 w-5 text-green-500" />
                   <span>Demo Credentials</span>
                 </CardTitle>
@@ -151,7 +156,7 @@ export function LoginForm() {
                   return (
                     <div 
                       key={index} 
-                      className="flex items-center space-x-3 p-3 rounded-lg bg-gradient-to-r from-gray-50 to-gray-100/50 hover:from-gray-100 hover:to-gray-150 transition-all duration-200 cursor-pointer group"
+                      className="flex items-center space-x-3 p-3 rounded-lg bg-gradient-to-r from-gray-50 to-gray-100/50 dark:from-slate-700/50 dark:to-slate-600/30 hover:from-gray-100 hover:to-gray-150 dark:hover:from-slate-600/60 dark:hover:to-slate-500/40 transition-all duration-200 cursor-pointer group"
                       onClick={() => {
                         setEmail(cred.email)
                         setPassword(cred.password)
@@ -161,8 +166,8 @@ export function LoginForm() {
                         <Icon className="h-4 w-4 text-green-600" />
                       </div>
                       <div className="flex-1">
-                        <div className="font-medium text-gray-800">{cred.role}</div>
-                        <div className="text-sm text-gray-600">
+                        <div className="font-medium text-gray-800 dark:text-white">{cred.role}</div>
+                        <div className="text-sm text-gray-600 dark:text-gray-300">
                           {cred.email} / {cred.password}
                         </div>
                       </div>

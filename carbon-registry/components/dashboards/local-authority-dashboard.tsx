@@ -141,11 +141,11 @@ export function LocalAuthorityDashboard() {
 
   return (
     <DashboardLayout>
-      <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-blue-50 relative overflow-hidden">
+      <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-blue-50 dark:from-slate-800/60 dark:via-slate-700/40 dark:to-blue-900/50 relative overflow-hidden">
         {/* Animated Background Orbs */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-r from-blue-100/30 to-purple-100/30 rounded-full blur-3xl animate-float" />
-          <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-gradient-to-r from-green-100/30 to-blue-100/30 rounded-full blur-3xl animate-float" style={{ animationDelay: '-3s' }} />
+          <div className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-r from-blue-100/30 to-purple-100/30 dark:from-blue-800/30 dark:to-purple-800/30 rounded-full blur-3xl animate-float" />
+          <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-gradient-to-r from-green-100/30 to-blue-100/30 dark:from-green-800/30 dark:to-blue-800/30 rounded-full blur-3xl animate-float" style={{ animationDelay: '-3s' }} />
         </div>
 
         <div className="relative z-10 p-6 space-y-6">
@@ -153,18 +153,18 @@ export function LocalAuthorityDashboard() {
           <h1 className="text-4xl font-bold bg-gradient-to-r from-green-600 via-blue-600 to-purple-600 bg-clip-text text-transparent">
             Local Authority Dashboard
           </h1>
-          <p className="text-lg text-gray-600">
+          <p className="text-lg text-gray-600 dark:text-gray-300">
             Welcome back, {user?.name} - {user?.region}
           </p>
         </div>
 
-        <Card className="bg-white border-gray-200 shadow-lg">
+        <Card className="bg-white dark:bg-slate-800/90 border-gray-200 dark:border-slate-600 shadow-lg">
           <CardHeader>
-            <CardTitle className="flex items-center space-x-2">
+            <CardTitle className="flex items-center space-x-2 text-gray-900 dark:text-white">
               <UserPlus className="h-5 w-5" />
               <span>Register NGO/Community</span>
             </CardTitle>
-            <CardDescription>Register a new NGO or Community organization under your jurisdiction</CardDescription>
+            <CardDescription className="text-gray-600 dark:text-gray-300">Register a new NGO or Community organization under your jurisdiction</CardDescription>
           </CardHeader>
           <CardContent>
             <form onSubmit={handleRegisterNGO} className="space-y-4">
@@ -238,67 +238,67 @@ export function LocalAuthorityDashboard() {
 
         {/* Stats Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <Card className="bg-white border-gray-200 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
+          <Card className="bg-white dark:bg-slate-800/90 border-gray-200 dark:border-slate-600 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Pending Reviews</CardTitle>
+              <CardTitle className="text-sm font-medium text-gray-900 dark:text-white">Pending Reviews</CardTitle>
               <Clock className="h-4 w-4 text-yellow-600" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">{pendingCount}</div>
-              <p className="text-xs text-gray-500">Awaiting verification</p>
+              <div className="text-2xl font-bold text-gray-900 dark:text-white">{pendingCount}</div>
+              <p className="text-xs text-gray-500 dark:text-gray-400">Awaiting verification</p>
             </CardContent>
           </Card>
 
-          <Card className="bg-white border-gray-200 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
+          <Card className="bg-white dark:bg-slate-800/90 border-gray-200 dark:border-slate-600 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Verified Projects</CardTitle>
+              <CardTitle className="text-sm font-medium text-gray-900 dark:text-white">Verified Projects</CardTitle>
               <CheckCircle className="h-4 w-4 text-green-600" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">{verifiedCount}</div>
-              <p className="text-xs text-gray-500">Successfully verified</p>
+              <div className="text-2xl font-bold text-gray-900 dark:text-white">{verifiedCount}</div>
+              <p className="text-xs text-gray-500 dark:text-gray-400">Successfully verified</p>
             </CardContent>
           </Card>
 
-          <Card className="bg-white border-gray-200 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
+          <Card className="bg-white dark:bg-slate-800/90 border-gray-200 dark:border-slate-600 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Rejected Submissions</CardTitle>
+              <CardTitle className="text-sm font-medium text-gray-900 dark:text-white">Rejected Submissions</CardTitle>
               <XCircle className="h-4 w-4 text-red-600" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">{rejectedCount}</div>
-              <p className="text-xs text-gray-500">Did not meet criteria</p>
+              <div className="text-2xl font-bold text-gray-900 dark:text-white">{rejectedCount}</div>
+              <p className="text-xs text-gray-500 dark:text-gray-400">Did not meet criteria</p>
             </CardContent>
           </Card>
         </div>
 
         {/* NGO Submissions */}
-        <Card className="bg-white border-gray-200 shadow-lg">
+        <Card className="bg-white dark:bg-slate-800/90 border-gray-200 dark:border-slate-600 shadow-lg">
           <CardHeader>
-            <CardTitle>NGO Submissions</CardTitle>
-            <CardDescription>
+            <CardTitle className="text-gray-900 dark:text-white">NGO Submissions</CardTitle>
+            <CardDescription className="text-gray-600 dark:text-gray-300">
               Review and verify carbon offset project submissions from NGOs in your region
             </CardDescription>
           </CardHeader>
           <CardContent>
             <div className="space-y-6">
               {submissions.map((submission) => (
-                <div key={submission.id} className="bg-gray-50 border border-gray-200 rounded-xl p-6 space-y-4 hover:bg-gray-100 transition-all duration-300 shadow-sm">
+                <div key={submission.id} className="bg-gray-50 dark:bg-slate-700/60 border border-gray-200 dark:border-slate-600 rounded-xl p-6 space-y-4 hover:bg-gray-100 dark:hover:bg-slate-600/60 transition-all duration-300 shadow-sm">
                   <div className="flex items-start justify-between">
                     <div className="space-y-2">
                       <div className="flex items-center space-x-2">
-                        <h3 className="text-lg font-semibold">{submission.projectTitle}</h3>
+                        <h3 className="text-lg font-semibold text-gray-900 dark:text-white">{submission.projectTitle}</h3>
                         <Badge className={getStatusColor(submission.status)}>{submission.status}</Badge>
                       </div>
-                      <p className="text-sm text-gray-500">Submitted by: {submission.ngoName}</p>
-                      <p className="text-sm">{submission.description}</p>
+                      <p className="text-sm text-gray-500 dark:text-gray-400">Submitted by: {submission.ngoName}</p>
+                      <p className="text-sm text-gray-700 dark:text-gray-300">{submission.description}</p>
                     </div>
                   </div>
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     {/* Image Preview */}
                     <div className="space-y-2">
-                      <h4 className="text-sm font-medium flex items-center space-x-1">
+                      <h4 className="text-sm font-medium flex items-center space-x-1 text-gray-900 dark:text-white">
                         <ImageIcon className="h-4 w-4" />
                         <span>Project Image</span>
                       </h4>
@@ -329,32 +329,32 @@ export function LocalAuthorityDashboard() {
                     {/* Project Details */}
                     <div className="space-y-3">
                       <div className="space-y-2">
-                        <h4 className="text-sm font-medium flex items-center space-x-1">
+                        <h4 className="text-sm font-medium flex items-center space-x-1 text-gray-900 dark:text-white">
                           <MapPin className="h-4 w-4" />
                           <span>Location</span>
                         </h4>
-                        <div className="text-sm text-gray-500">
+                        <div className="text-sm text-gray-500 dark:text-gray-400">
                           <p>{submission.location.address}</p>
                           <p className="font-mono text-xs">GPS: {submission.location.coordinates}</p>
                         </div>
                       </div>
 
                       <div className="space-y-2">
-                        <h4 className="text-sm font-medium flex items-center space-x-1">
+                        <h4 className="text-sm font-medium flex items-center space-x-1 text-gray-900 dark:text-white">
                           <Clock className="h-4 w-4" />
                           <span>Timestamp</span>
                         </h4>
-                        <p className="text-sm text-gray-500">
+                        <p className="text-sm text-gray-500 dark:text-gray-400">
                           {new Date(submission.timestamp).toLocaleString()}
                         </p>
                       </div>
 
                       <div className="space-y-2">
-                        <h4 className="text-sm font-medium flex items-center space-x-1">
+                        <h4 className="text-sm font-medium flex items-center space-x-1 text-gray-900 dark:text-white">
                           <Hash className="h-4 w-4" />
                           <span>IPFS Hash</span>
                         </h4>
-                        <p className="text-xs font-mono text-gray-500 break-all">{submission.ipfsHash}</p>
+                        <p className="text-xs font-mono text-gray-500 dark:text-gray-400 break-all">{submission.ipfsHash}</p>
                       </div>
                     </div>
                   </div>

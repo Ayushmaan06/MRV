@@ -118,11 +118,11 @@ export function NCCRDashboard() {
 
   return (
     <DashboardLayout>
-      <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-blue-50 relative overflow-hidden">
+      <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-blue-50 dark:from-slate-800/60 dark:via-slate-700/40 dark:to-blue-900/50 relative overflow-hidden">
         {/* Animated Background Orbs */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-r from-blue-100/30 to-purple-100/30 rounded-full blur-3xl animate-float" />
-          <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-gradient-to-r from-green-100/30 to-blue-100/30 rounded-full blur-3xl animate-float" style={{ animationDelay: '-3s' }} />
+          <div className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-r from-blue-100/30 to-purple-100/30 dark:from-blue-800/30 dark:to-purple-800/30 rounded-full blur-3xl animate-float" />
+          <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-gradient-to-r from-green-100/30 to-blue-100/30 dark:from-green-800/30 dark:to-blue-800/30 rounded-full blur-3xl animate-float" style={{ animationDelay: '-3s' }} />
         </div>
 
         <div className="relative z-10 p-6 space-y-6">
@@ -130,18 +130,18 @@ export function NCCRDashboard() {
           <h1 className="text-4xl font-bold bg-gradient-to-r from-green-600 via-blue-600 to-purple-600 bg-clip-text text-transparent">
             NCCR Admin Dashboard
           </h1>
-          <p className="text-lg text-gray-600">
+          <p className="text-lg text-gray-600 dark:text-gray-300">
             National Carbon Credit Registry - Administrative Overview
           </p>
         </div>
 
-        <Card className="bg-white border-gray-200 shadow-lg">
+        <Card className="bg-white dark:bg-slate-800/90 border-gray-200 dark:border-slate-600 shadow-lg">
           <CardHeader>
-            <CardTitle className="flex items-center space-x-2">
+            <CardTitle className="flex items-center space-x-2 text-gray-900 dark:text-white">
               <UserPlus className="h-5 w-5" />
               <span>Register Local Authority</span>
             </CardTitle>
-            <CardDescription>
+            <CardDescription className="text-gray-600 dark:text-gray-300">
               Register a new Local Authority to verify carbon offset projects in their region
             </CardDescription>
           </CardHeader>
@@ -217,57 +217,57 @@ export function NCCRDashboard() {
 
         {/* Stats Cards */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-          <Card className="bg-white border-gray-200 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
+          <Card className="bg-white dark:bg-slate-800/90 border-gray-200 dark:border-slate-600 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Total Credits Issued</CardTitle>
+              <CardTitle className="text-sm font-medium text-gray-900 dark:text-white">Total Credits Issued</CardTitle>
               <Award className="h-4 w-4 text-blue-600" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">{totalCreditsIssued}</div>
-              <p className="text-xs text-gray-500">Carbon credits in circulation</p>
+              <div className="text-2xl font-bold text-gray-900 dark:text-white">{totalCreditsIssued}</div>
+              <p className="text-xs text-gray-500 dark:text-gray-400">Carbon credits in circulation</p>
             </CardContent>
           </Card>
 
-          <Card className="bg-white border-gray-200 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
+          <Card className="bg-white dark:bg-slate-800/90 border-gray-200 dark:border-slate-600 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Pending Finalizations</CardTitle>
+              <CardTitle className="text-sm font-medium text-gray-900 dark:text-white">Pending Finalizations</CardTitle>
               <CheckCircle className="h-4 w-4 text-yellow-600" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">{pendingVerifications}</div>
-              <p className="text-xs text-gray-500">Awaiting credit issuance</p>
+              <div className="text-2xl font-bold text-gray-900 dark:text-white">{pendingVerifications}</div>
+              <p className="text-xs text-gray-500 dark:text-gray-400">Awaiting credit issuance</p>
             </CardContent>
           </Card>
 
-          <Card className="bg-white border-gray-200 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
+          <Card className="bg-white dark:bg-slate-800/90 border-gray-200 dark:border-slate-600 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Active NGOs</CardTitle>
+              <CardTitle className="text-sm font-medium text-gray-900 dark:text-white">Active NGOs</CardTitle>
               <Users className="h-4 w-4 text-purple-600" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">{totalNGOs}</div>
-              <p className="text-xs text-gray-500">Registered organizations</p>
+              <div className="text-2xl font-bold text-gray-900 dark:text-white">{totalNGOs}</div>
+              <p className="text-xs text-gray-500 dark:text-gray-400">Registered organizations</p>
             </CardContent>
           </Card>
 
-          <Card className="bg-white border-gray-200 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
+          <Card className="bg-white dark:bg-slate-800/90 border-gray-200 dark:border-slate-600 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Growth Rate</CardTitle>
+              <CardTitle className="text-sm font-medium text-gray-900 dark:text-white">Growth Rate</CardTitle>
               <TrendingUp className="h-4 w-4 text-green-600" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">+47%</div>
-              <p className="text-xs text-gray-500">Credits issued this month</p>
+              <div className="text-2xl font-bold text-gray-900 dark:text-white">+47%</div>
+              <p className="text-xs text-gray-500 dark:text-gray-400">Credits issued this month</p>
             </CardContent>
           </Card>
         </div>
 
         {/* Charts */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <Card className="bg-white border-gray-200 shadow-lg">
+          <Card className="bg-white dark:bg-slate-800/90 border-gray-200 dark:border-slate-600 shadow-lg">
             <CardHeader>
-              <CardTitle>Credits Issued Over Time</CardTitle>
-              <CardDescription>Monthly carbon credit issuance trend</CardDescription>
+              <CardTitle className="text-gray-900 dark:text-white">Credits Issued Over Time</CardTitle>
+              <CardDescription className="text-gray-600 dark:text-gray-300">Monthly carbon credit issuance trend</CardDescription>
             </CardHeader>
             <CardContent>
               <ResponsiveContainer width="100%" height={300}>
@@ -282,10 +282,10 @@ export function NCCRDashboard() {
             </CardContent>
           </Card>
 
-          <Card className="bg-white border-gray-200 shadow-lg">
+          <Card className="bg-white dark:bg-slate-800/90 border-gray-200 dark:border-slate-600 shadow-lg">
             <CardHeader>
-              <CardTitle>Credits by NGO</CardTitle>
-              <CardDescription>Distribution of issued credits across organizations</CardDescription>
+              <CardTitle className="text-gray-900 dark:text-white">Credits by NGO</CardTitle>
+              <CardDescription className="text-gray-600 dark:text-gray-300">Distribution of issued credits across organizations</CardDescription>
             </CardHeader>
             <CardContent>
               <ResponsiveContainer width="100%" height={300}>
@@ -302,19 +302,19 @@ export function NCCRDashboard() {
         </div>
 
         {/* Verified Submissions */}
-        <Card className="bg-white border-gray-200 shadow-lg">
+        <Card className="bg-white dark:bg-slate-800/90 border-gray-200 dark:border-slate-600 shadow-lg">
           <CardHeader>
-            <CardTitle>Verified Submissions</CardTitle>
-            <CardDescription>Projects verified by local authorities awaiting final credit issuance</CardDescription>
+            <CardTitle className="text-gray-900 dark:text-white">Verified Submissions</CardTitle>
+            <CardDescription className="text-gray-600 dark:text-gray-300">Projects verified by local authorities awaiting final credit issuance</CardDescription>
           </CardHeader>
           <CardContent>
             <div className="space-y-6">
               {verifiedSubmissions.map((submission) => (
-                <div key={submission.id} className="bg-gray-50 border border-gray-200 rounded-xl p-6 space-y-4 hover:bg-gray-100 transition-all duration-300 shadow-sm">
+                <div key={submission.id} className="bg-gray-50 dark:bg-slate-700/60 border border-gray-200 dark:border-slate-600 rounded-xl p-6 space-y-4 hover:bg-gray-100 dark:hover:bg-slate-600/60 transition-all duration-300 shadow-sm">
                   <div className="flex items-start justify-between">
                     <div className="space-y-2">
                       <div className="flex items-center space-x-2">
-                        <h3 className="text-lg font-semibold">{submission.projectTitle}</h3>
+                        <h3 className="text-lg font-semibold text-gray-900 dark:text-white">{submission.projectTitle}</h3>
                         <Badge
                           className={
                             submission.status === "credits_issued"
@@ -325,28 +325,28 @@ export function NCCRDashboard() {
                           {submission.status === "credits_issued" ? "Credits Issued" : "Ready for Issuance"}
                         </Badge>
                       </div>
-                      <p className="text-sm text-gray-500">
+                      <p className="text-sm text-gray-500 dark:text-gray-400">
                         {submission.ngoName} • Verified by {submission.localAuthority}
                       </p>
                     </div>
                     <div className="text-right">
                       <div className="text-2xl font-bold text-blue-600">{submission.estimatedCredits}</div>
-                      <div className="text-xs text-gray-500">Credits</div>
+                      <div className="text-xs text-gray-500 dark:text-gray-400">Credits</div>
                     </div>
                   </div>
 
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
                     <div className="flex items-center space-x-2">
-                      <MapPin className="h-4 w-4 text-gray-500" />
-                      <span>{submission.location}</span>
+                      <MapPin className="h-4 w-4 text-gray-500 dark:text-gray-400" />
+                      <span className="text-gray-700 dark:text-gray-300">{submission.location}</span>
                     </div>
                     <div className="flex items-center space-x-2">
-                      <Calendar className="h-4 w-4 text-gray-500" />
-                      <span>Verified: {submission.verificationDate}</span>
+                      <Calendar className="h-4 w-4 text-gray-500 dark:text-gray-400" />
+                      <span className="text-gray-700 dark:text-gray-300">Verified: {submission.verificationDate}</span>
                     </div>
                     <div className="flex items-center space-x-2">
-                      <Hash className="h-4 w-4 text-gray-500" />
-                      <span className="font-mono text-xs truncate">{submission.ipfsHash}</span>
+                      <Hash className="h-4 w-4 text-gray-500 dark:text-gray-400" />
+                      <span className="font-mono text-xs truncate text-gray-700 dark:text-gray-300">{submission.ipfsHash}</span>
                     </div>
                   </div>
 

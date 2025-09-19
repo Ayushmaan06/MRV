@@ -77,11 +77,11 @@ export function NGODashboard() {
 
   return (
     <DashboardLayout>
-      <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-blue-50 relative overflow-hidden">
+      <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-blue-50 dark:from-slate-800/60 dark:via-slate-700/40 dark:to-blue-900/50 relative overflow-hidden">
         {/* Animated Background Orbs */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-r from-blue-100/30 to-purple-100/30 rounded-full blur-3xl animate-float" />
-          <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-gradient-to-r from-green-100/30 to-blue-100/30 rounded-full blur-3xl animate-float" style={{ animationDelay: '-3s' }} />
+          <div className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-r from-blue-100/30 to-purple-100/30 dark:from-blue-800/30 dark:to-purple-800/30 rounded-full blur-3xl animate-float" />
+          <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-gradient-to-r from-green-100/30 to-blue-100/30 dark:from-green-800/30 dark:to-blue-800/30 rounded-full blur-3xl animate-float" style={{ animationDelay: '-3s' }} />
         </div>
 
         <div className="relative z-10 p-6 space-y-6">
@@ -89,52 +89,52 @@ export function NGODashboard() {
           <h1 className="text-4xl font-bold bg-gradient-to-r from-green-600 via-blue-600 to-purple-600 bg-clip-text text-transparent">
             NGO Dashboard
           </h1>
-          <p className="text-lg text-gray-600">
+          <p className="text-lg text-gray-600 dark:text-gray-300">
             Welcome back, {user?.name}
           </p>
         </div>
 
         {/* Stats Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <Card className="bg-white border-gray-200 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
+          <Card className="bg-white dark:bg-slate-800/90 border-gray-200 dark:border-slate-600 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Total Credits Earned</CardTitle>
+              <CardTitle className="text-sm font-medium text-gray-900 dark:text-white">Total Credits Earned</CardTitle>
               <CheckCircle className="h-4 w-4 text-green-600" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">{approvedCredits}</div>
-              <p className="text-xs text-gray-500">Carbon credits issued</p>
+              <div className="text-2xl font-bold text-gray-900 dark:text-white">{approvedCredits}</div>
+              <p className="text-xs text-gray-500 dark:text-gray-400">Carbon credits issued</p>
             </CardContent>
           </Card>
 
-          <Card className="bg-white border-gray-200 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
+          <Card className="bg-white dark:bg-slate-800/90 border-gray-200 dark:border-slate-600 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Pending Verifications</CardTitle>
+              <CardTitle className="text-sm font-medium text-gray-900 dark:text-white">Pending Verifications</CardTitle>
               <AlertCircle className="h-4 w-4 text-yellow-600" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">{submissions.filter((s) => s.status === "pending").length}</div>
-              <p className="text-xs text-gray-500">Awaiting review</p>
+              <div className="text-2xl font-bold text-gray-900 dark:text-white">{submissions.filter((s) => s.status === "pending").length}</div>
+              <p className="text-xs text-gray-500 dark:text-gray-400">Awaiting review</p>
             </CardContent>
           </Card>
 
-          <Card className="bg-white border-gray-200 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
+          <Card className="bg-white dark:bg-slate-800/90 border-gray-200 dark:border-slate-600 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Total Submissions</CardTitle>
+              <CardTitle className="text-sm font-medium text-gray-900 dark:text-white">Total Submissions</CardTitle>
               <Upload className="h-4 w-4 text-blue-600" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">{submissions.length}</div>
-              <p className="text-xs text-gray-500">Projects submitted</p>
+              <div className="text-2xl font-bold text-gray-900 dark:text-white">{submissions.length}</div>
+              <p className="text-xs text-gray-500 dark:text-gray-400">Projects submitted</p>
             </CardContent>
           </Card>
         </div>
 
         {/* Upload Section */}
-        <Card className="bg-white border-gray-200 shadow-lg">
+        <Card className="bg-white dark:bg-slate-800/90 border-gray-200 dark:border-slate-600 shadow-lg">
           <CardHeader>
-            <CardTitle>Upload New Project</CardTitle>
-            <CardDescription>Submit photos and videos of your carbon offset project for verification</CardDescription>
+            <CardTitle className="text-gray-900 dark:text-white">Upload New Project</CardTitle>
+            <CardDescription className="text-gray-600 dark:text-gray-300">Submit photos and videos of your carbon offset project for verification</CardDescription>
           </CardHeader>
           <CardContent>
             <div className="flex flex-col sm:flex-row gap-4">
@@ -142,7 +142,7 @@ export function NGODashboard() {
                 <Camera className="h-4 w-4" />
                 <span>Upload Media</span>
               </Button>
-              <div className="text-sm text-gray-500 flex items-center space-x-2">
+              <div className="text-sm text-gray-500 dark:text-gray-400 flex items-center space-x-2">
                 <MapPin className="h-4 w-4" />
                 <span>GPS location and timestamp will be automatically captured</span>
               </div>
@@ -151,21 +151,21 @@ export function NGODashboard() {
         </Card>
 
         {/* Submissions List */}
-        <Card className="bg-white border-gray-200 shadow-lg">
+        <Card className="bg-white dark:bg-slate-800/90 border-gray-200 dark:border-slate-600 shadow-lg">
           <CardHeader>
-            <CardTitle>Your Submissions</CardTitle>
-            <CardDescription>Track the status of your project submissions</CardDescription>
+            <CardTitle className="text-gray-900 dark:text-white">Your Submissions</CardTitle>
+            <CardDescription className="text-gray-600 dark:text-gray-300">Track the status of your project submissions</CardDescription>
           </CardHeader>
           <CardContent>
             <div className="space-y-4">
               {submissions.map((submission) => (
-                <div key={submission.id} className="flex items-center justify-between p-4 bg-gray-50 border border-gray-200 rounded-xl hover:bg-gray-100 transition-all duration-300 shadow-sm">
+                <div key={submission.id} className="flex items-center justify-between p-4 bg-gray-50 dark:bg-slate-700/60 border border-gray-200 dark:border-slate-600 rounded-xl hover:bg-gray-100 dark:hover:bg-slate-600/60 transition-all duration-300 shadow-sm">
                   <div className="space-y-1">
                     <div className="flex items-center space-x-2">
-                      <h3 className="font-medium">{submission.title}</h3>
+                      <h3 className="font-medium text-gray-900 dark:text-white">{submission.title}</h3>
                       {getStatusIcon(submission.status)}
                     </div>
-                    <div className="flex items-center space-x-4 text-sm text-gray-500">
+                    <div className="flex items-center space-x-4 text-sm text-gray-500 dark:text-gray-400">
                       <div className="flex items-center space-x-1">
                         <MapPin className="h-3 w-3" />
                         <span>{submission.location}</span>

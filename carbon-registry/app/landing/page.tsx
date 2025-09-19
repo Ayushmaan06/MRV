@@ -4,6 +4,7 @@ import React, { useState, useEffect, useRef } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
+import { ThemeToggle } from "@/components/theme-toggle"
 import { 
   Leaf, 
   Shield, 
@@ -135,7 +136,7 @@ export default function LandingPage({ onSignInClick }: { onSignInClick?: () => v
   ]
 
   return (
-    <div className="bg-gradient-to-b from-blue-50/60 via-purple-50/40 via-green-50/30 to-blue-50/50 overflow-x-hidden relative">
+    <div className="bg-gradient-to-b from-blue-50/60 via-purple-50/40 via-green-50/30 to-blue-50/50 dark:from-slate-800/80 dark:via-blue-900/70 dark:via-slate-700/80 dark:to-slate-800/85 overflow-x-hidden relative">
       {/* Global background orbs layer */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
         {/* Large floating orbs that span across sections */}
@@ -146,7 +147,7 @@ export default function LandingPage({ onSignInClick }: { onSignInClick?: () => v
         <div className="absolute bottom-1/3 right-1/3 w-64 h-64 bg-gradient-to-br from-violet-300/22 to-indigo-300/18 rounded-full blur-3xl animate-float" style={{ animationDelay: '4.5s' }} />
       </div>
       {/* Navbar */}
-      <nav className="fixed top-0 w-full z-50 bg-white/40 backdrop-blur-lg border-b border-gray-200/30">
+      <nav className="fixed top-0 w-full z-50 bg-white/40 dark:bg-slate-800/70 backdrop-blur-lg border-b border-gray-200/30 dark:border-slate-600/50">
         <div className="container mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-3">
@@ -162,16 +163,22 @@ export default function LandingPage({ onSignInClick }: { onSignInClick?: () => v
             <div className="hidden md:flex items-center space-x-8">
               <button 
                 onClick={() => scrollToSection(featuresRef)}
-                className="text-gray-600 hover:text-gray-900 transition-colors"
+                className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors"
               >
                 Features
               </button>
               <button 
                 onClick={() => scrollToSection(statsRef)}
-                className="text-gray-600 hover:text-gray-900 transition-colors"
+                className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors"
               >
                 About
               </button>
+              <ThemeToggle />
+            </div>
+            
+            {/* Mobile theme toggle */}
+            <div className="md:hidden">
+              <ThemeToggle />
             </div>
           </div>
         </div>
@@ -214,13 +221,13 @@ export default function LandingPage({ onSignInClick }: { onSignInClick?: () => v
             "transition-all duration-1000 transform",
             isVisible ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
           )}>
-            <h1 className="text-6xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-gray-900 via-green-600 to-blue-600 bg-clip-text text-transparent leading-tight animate-gradient">
+            <h1 className="text-6xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-gray-900 via-green-600 to-blue-600 dark:from-white dark:via-green-400 dark:to-blue-400 bg-clip-text text-transparent leading-tight animate-gradient">
               The Future of
               <br />
               <span className="pulse">Carbon Credits</span>
             </h1>
             
-            <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-xl text-gray-600 dark:text-gray-300 mb-8 max-w-3xl mx-auto leading-relaxed">
               Revolutionary blockchain platform connecting regulators, authorities, and NGOs 
               for transparent, verified carbon credit management worldwide.
             </p>
@@ -279,10 +286,10 @@ export default function LandingPage({ onSignInClick }: { onSignInClick?: () => v
         
         <div className="container mx-auto px-6 relative z-10">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-4 bg-gradient-to-r from-gray-900 to-gray-600 bg-clip-text text-transparent">
+            <h2 className="text-4xl font-bold mb-4 bg-gradient-to-r from-gray-900 to-gray-600 dark:from-white dark:to-gray-300 bg-clip-text text-transparent">
               Powered by Innovation
             </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
               Advanced technology stack ensuring security, transparency, and efficiency
             </p>
           </div>
@@ -294,7 +301,7 @@ export default function LandingPage({ onSignInClick }: { onSignInClick?: () => v
                 <Card 
                   key={index}
                   className={cn(
-                    "border-0 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:scale-105 hover:-rotate-1 bg-gradient-to-br from-white to-gray-50 group cursor-pointer",
+                    "border-0 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:scale-105 hover:-rotate-1 bg-gradient-to-br from-white to-gray-50 dark:from-slate-800/90 dark:to-slate-700/70 group cursor-pointer",
                     "animate-in slide-in-from-bottom duration-700",
                   )}
                   style={{ animationDelay: `${index * 150}ms` }}
@@ -307,13 +314,13 @@ export default function LandingPage({ onSignInClick }: { onSignInClick?: () => v
                 >
                   <CardContent className="p-6 text-center relative overflow-hidden">
                     {/* Hover effect background */}
-                    <div className="absolute inset-0 bg-gradient-to-br from-transparent to-gray-100/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    <div className="absolute inset-0 bg-gradient-to-br from-transparent to-gray-100/50 dark:to-slate-600/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                     
                     <div className={cn("inline-flex p-3 rounded-full mb-4 relative z-10 group-hover:animate-pulse", feature.color, "bg-current bg-opacity-10")}>
                       <Icon className={cn("h-6 w-6 transition-transform duration-300 group-hover:scale-110", feature.color)} />
                     </div>
-                    <h3 className="text-xl font-semibold mb-2 group-hover:text-gray-900 transition-colors">{feature.title}</h3>
-                    <p className="text-gray-600 group-hover:text-gray-700 transition-colors">{feature.description}</p>
+                    <h3 className="text-xl font-semibold mb-2 group-hover:text-gray-900 dark:text-white dark:group-hover:text-gray-100 transition-colors">{feature.title}</h3>
+                    <p className="text-gray-600 dark:text-gray-300 group-hover:text-gray-700 dark:group-hover:text-gray-200 transition-colors">{feature.description}</p>
                   </CardContent>
                 </Card>
               )
@@ -341,8 +348,8 @@ export default function LandingPage({ onSignInClick }: { onSignInClick?: () => v
         
         <div className="container mx-auto px-6 relative z-10">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-4">Built for Every Stakeholder</h2>
-            <p className="text-xl text-gray-600">Tailored experiences for all carbon credit ecosystem participants</p>
+            <h2 className="text-4xl font-bold mb-4 text-gray-900 dark:text-white">Built for Every Stakeholder</h2>
+            <p className="text-xl text-gray-600 dark:text-gray-300">Tailored experiences for all carbon credit ecosystem participants</p>
           </div>
           
           <div className="grid lg:grid-cols-3 gap-8">
@@ -352,7 +359,7 @@ export default function LandingPage({ onSignInClick }: { onSignInClick?: () => v
                 <Card 
                   key={index}
                   className={cn(
-                    "border-0 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:scale-105 overflow-hidden group",
+                    "border-0 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:scale-105 overflow-hidden group bg-white dark:bg-slate-800/90",
                     "animate-in slide-in-from-bottom duration-700"
                   )}
                   style={{ animationDelay: `${index * 200}ms` }}
@@ -364,18 +371,18 @@ export default function LandingPage({ onSignInClick }: { onSignInClick?: () => v
                         <Icon className="h-6 w-6" />
                       </div>
                       <div>
-                        <h3 className="text-xl font-bold">{type.title}</h3>
-                        <p className="text-sm text-gray-500">{type.subtitle}</p>
+                        <h3 className="text-xl font-bold text-gray-900 dark:text-white">{type.title}</h3>
+                        <p className="text-sm text-gray-500 dark:text-gray-400">{type.subtitle}</p>
                       </div>
                     </div>
                     
-                    <p className="text-gray-600 mb-6">{type.description}</p>
+                    <p className="text-gray-600 dark:text-gray-300 mb-6">{type.description}</p>
                     
                     <div className="space-y-2">
                       {type.features.map((feature, featureIndex) => (
                         <div key={featureIndex} className="flex items-center space-x-2">
                           <CheckCircle className="h-4 w-4 text-green-500" />
-                          <span className="text-sm text-gray-600">{feature}</span>
+                          <span className="text-sm text-gray-600 dark:text-gray-300">{feature}</span>
                         </div>
                       ))}
                     </div>
@@ -470,8 +477,8 @@ export default function LandingPage({ onSignInClick }: { onSignInClick?: () => v
         
         <div className="container mx-auto px-6 text-center">
           <div className="max-w-3xl mx-auto">
-            <h2 className="text-4xl font-bold mb-6">Ready to Transform Carbon Management?</h2>
-            <p className="text-xl text-gray-600 mb-8">
+            <h2 className="text-4xl font-bold mb-6 text-gray-900 dark:text-white">Ready to Transform Carbon Management?</h2>
+            <p className="text-xl text-gray-600 dark:text-gray-300 mb-8">
               Join thousands of organizations already using our platform to create a sustainable future.
             </p>
             
@@ -496,7 +503,7 @@ export default function LandingPage({ onSignInClick }: { onSignInClick?: () => v
       </section>
 
       {/* Footer */}
-      <footer className="bg-gray-900 text-white py-12">
+      <footer className="bg-gray-900 dark:bg-slate-900 text-white py-12">
         {/* Local footer orbs */}
         <div className="absolute inset-0 overflow-visible pointer-events-none">
         <div className="absolute top-1/2 left-1/4 w-48 h-48 bg-gradient-to-br from-white/5 to-gray-300/8 rounded-full blur-2xl animate-float" style={{ animationDelay: '2s' }} />
@@ -512,7 +519,7 @@ export default function LandingPage({ onSignInClick }: { onSignInClick?: () => v
             </div>
             
             <div className="flex items-center space-x-6">
-              <span className="text-gray-400">© 2025 Carbon Registry. All rights reserved.</span>
+              <span className="text-gray-400 dark:text-gray-500">© 2025 Carbon Registry. All rights reserved.</span>
               <div className="flex items-center space-x-1">
                 <Star className="h-4 w-4 text-yellow-500 fill-current" />
                 
