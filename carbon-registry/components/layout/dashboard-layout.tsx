@@ -4,8 +4,8 @@ import type React from "react"
 
 import { Button } from "@/components/ui/button"
 import { useAuth } from "@/contexts/auth-context"
-import { useTheme } from "@/contexts/theme-context"
-import { Leaf, LogOut, Bell, Home, Upload, CheckSquare, Award, Settings, Moon, Sun, Brain } from "lucide-react"
+import { ThemeToggle } from "@/components/theme-toggle"
+import { Leaf, LogOut, Bell, Home, Upload, CheckSquare, Award, Settings, Brain } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 import { useState } from "react"
 import { Card, CardContent } from "@/components/ui/card"
@@ -16,7 +16,6 @@ interface DashboardLayoutProps {
 
 export function DashboardLayout({ children }: DashboardLayoutProps) {
   const { user, logout } = useAuth()
-  const { theme, toggleTheme } = useTheme()
   const [notifications] = useState([
     { id: 1, message: "New submission from Green Earth NGO", type: "info", time: "2 min ago" },
     { id: 2, message: "Project verification completed", type: "success", time: "1 hour ago" },
@@ -59,7 +58,7 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
           <div className="flex items-center space-x-4">
             <div className="flex items-center space-x-2">
               <Leaf className="h-6 w-6 text-accent" />
-              <span className="text-xl font-bold">Carbon Registry</span>
+              <span className="text-xl font-bold text-foreground">Carbon Registry</span>
             </div>
             <Badge variant="outline" className="text-xs">
               {user?.role.replace("_", " ")}
@@ -80,10 +79,7 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
               <span className="hidden sm:inline">RAG</span>
             </Button>
 
-            {/* Dark mode toggle */}
-            <Button variant="ghost" size="sm" onClick={toggleTheme} className="flex items-center space-x-2">
-              {theme === "light" ? <Moon className="h-4 w-4" /> : <Sun className="h-4 w-4" />}
-            </Button>
+            <ThemeToggle className="h-8 w-8" />
 
             {/* Notifications */}
             <div className="relative">
@@ -102,12 +98,12 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
               {showNotifications && (
                 <div className="absolute right-0 mt-2 w-80 bg-card border rounded-lg shadow-lg z-50">
                   <div className="p-4 border-b">
-                    <h3 className="font-semibold">Notifications</h3>
+                    <h3 className="font-semibold text-card-foreground">Notifications</h3>
                   </div>
                   <div className="max-h-64 overflow-y-auto">
                     {notifications.map((notification) => (
                       <div key={notification.id} className="p-3 border-b last:border-b-0 hover:bg-muted/50">
-                        <p className="text-sm">{notification.message}</p>
+                        <p className="text-sm text-card-foreground">{notification.message}</p>
                         <p className="text-xs text-muted-foreground mt-1">{notification.time}</p>
                       </div>
                     ))}
@@ -150,7 +146,7 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
             <h3 className="text-sm font-semibold text-sidebar-foreground mb-3">Quick Stats</h3>
             <Card>
               <CardContent className="p-3">
-                <div className="space-y-2 text-sm">
+                <div className="space-y-2 text-sm text-card-foreground">
                   {user?.role === "NGO" && (
                     <>
                       <div className="flex justify-between">
